@@ -3,11 +3,12 @@
 Servo myservo; // servo object to control servo
 int val; // variable to read the value from the analog pin
 const int buttonPin = 12; // where button to be pressed and switch modes is located
-int buttonState = 0;
+int buttonState = 0;//LOW;//0;
 const int ledPin = 13; // where the led pin is located
 int potPort = 1; // port connecting to potentiometeter
 
 void setup() {
+  // Serial.begin(9600);
    myservo.attach(9);
    pinMode(buttonPin, INPUT);
    pinMode(ledPin, OUTPUT);
@@ -25,6 +26,9 @@ void loop() {
 //   mode = analogRead(
    // manual mode:
    buttonState = digitalRead(buttonPin);  // know the state if button is being pressed
+   
+   //Serial.println(buttonState);
+
    if (buttonState == HIGH) {
     digitalWrite(ledPin, HIGH);
    }
