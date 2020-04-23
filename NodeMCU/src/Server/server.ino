@@ -18,7 +18,7 @@ void handleRequest(){
 }
  
 void setup() {
-  pinMode(D0, INPUT);
+  pinMode(D2, INPUT);
   
   Serial.begin(115200);
  
