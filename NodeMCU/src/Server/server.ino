@@ -16,6 +16,42 @@ void handleRequest(){
     server.send(201, "", "");
   }
 }
+
+void handleRequestHat(){
+  if(activate){
+    server.send(204, "", "");
+  }
+  else{
+    server.send(203, "", "");
+  }
+}
+
+void handleRequestBelt(){
+  if(activate){
+    server.send(206, "", "");
+  }
+  else{
+    server.send(205, "", "");
+  }
+}
+
+void handleRequestSpray(){
+  if(activate){
+    server.send(208, "", "");
+  }
+  else{
+    server.send(207, "", "");
+  }
+}
+
+void handleRequestCamera(){
+  if(activate){
+    server.send(210, "", "");
+  }
+  else{
+    server.send(209, "", "");
+  }
+}
  
 void setup() {
   pinMode(D2, INPUT);
@@ -35,6 +71,10 @@ void setup() {
   Serial.print("Server MAC address: ");
   Serial.println(WiFi.softAPmacAddress());
   server.on("/", handleRequest);
+  server.on("/hat", handleRequestHat);
+  server.on("/belt", handleRequestBelt);
+  server.on("/spray", handleRequestSpray);
+  server.on("/camera", handleRequestCamera);
   server.begin();
  
   Serial.println("Server listening");

@@ -4,22 +4,36 @@
 void setup() { 
   pinMode(D5, OUTPUT);
   Serial.begin(115200);                                  //Serial connection
-  WiFi.begin("RonaZona", "squidward420");   //WiFi connection
+  WiFi.begin("RonaZona", "squidward420");                //WiFi connection
   delay(5000);
 }
  
 void loop() {
- if(WiFi.status() == WL_CONNECTED){   //Check WiFi connection status
-   HTTPClient http; //Declare object of class HTTPClient
+ if(WiFi.status() == WL_CONNECTED){                      //Check WiFi connection status
+   HTTPClient http;                                      //Declare object of class HTTPClient
    http.begin("http://192.168.1.1:80");
-   int httpCode = http.GET(); //Send the request
+   int httpCode = http.GET();                            //Send the request
    if(httpCode == 201){
     digitalWrite(D5, LOW);
    }
    else if(httpCode == 202){
     digitalWrite(D5, HIGH);
    }
+   Serial.println("----------");
    Serial.println(httpCode);
+   http.begin("http://192.168.1.1:80/hat");
+   httpCode = http.GET(); 
+   Serial.println(httpCode);
+   http.begin("http://192.168.1.1:80/belt");
+   httpCode = http.GET(); 
+   Serial.println(httpCode);
+   http.begin("http://192.168.1.1:80/spray");
+   httpCode = http.GET(); 
+   Serial.println(httpCode);
+   http.begin("http://192.168.1.1:80/camera");
+   httpCode = http.GET(); 
+   Serial.println(httpCode);
+   Serial.println("----------");
  }else{
     Serial.println("Error in WiFi connection");
     WiFi.reconnect();
