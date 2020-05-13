@@ -10,23 +10,28 @@
 /--   2: Object between 3 and 6 feet
 /--   3: Object between 0 and 3 feet
 -------------------------------------------------------------------------------------------*/
-int led1 =4;
-int led2=5;
+  
+  // variable declaring the led inputs and ultrasonic triger and echo pins
+  // along with the temperary variables
+int signal1 = 4;
+int signal2 = 5;
 long trig=8;
 long echo=9;
-long Zeit;
-long Strecke;//asdsa
+long data_in;
+long dist;
 
 void setup() {
-    pinMode(led1,OUTPUT);
-    pinMode(led2,OUTPUT);
-    
-    pinMode(trig,OUTPUT);
-    pinMode(echo,INPUT);
-    Serial.begin(9600);
+      //declaring 
+  pinMode(signal1,OUTPUT);
+  pinMode(signal2,OUTPUT);
+
+  pinMode(trig,OUTPUT);
+  pinMode(echo,INPUT);
+  Serial.begin(9600);
 }
 
 void loop() {
+    //Get ultra sonic distance measurments 
   digitalWrite(trig,LOW);
   delayMicroseconds(2);
   
@@ -36,27 +41,30 @@ void loop() {
   
   data_in = pulseIn(echo,HIGH);
   dist=data_in*0.017;
-  
+    
+    //output to serial monitor for debugging
   Serial.print("Distance in cm:   ");
   Serial.println(dist);
   
   
   
-  if(Strecke>160)
+  if(dist>160)
   {
-    digitalWrite(led1,LOW); 
-    digitalWrite(led2,LOW); 
+      //if the distance is greater thatn 160cm turn off the output signals
+    digitalWrite(signal1,LOW); 
+    digitalWrite(signal2,LOW); 
   }
   
-  if(Strecke>94)
+  if(dist>94)
   {
-    digitalWrite(led1,HIGH); 
+      //if the object is within 6 feet turn on the first signal
+    digitalWrite(signal1,HIGH); 
   }
   
-  if(Strecke>15)
+  if(dist>15)
   {
-    digitalWrite(led2,HIGH); 
+      //if the object is with in 3 feet turn on the second signal
+    digitalWrite(signal2,HIGH); 
   }
-
     
 }
