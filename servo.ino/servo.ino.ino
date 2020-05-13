@@ -17,14 +17,6 @@ void setup() {
 }
 
 
-/*
- * For Milestone 1 demo:
- * Button to swap between manual mode and "input" mode.
- * LED will light up during "input" mode.
- * "input" mode will move servo so it can "shoot" in a 120 degree cone.
- * It is supposed to take in info from the servers.
- */
-
 void loop() {
    buttonState = digitalRead(buttonPin);  // read button state
    // Automatically move servo to shoot the spray
@@ -39,12 +31,12 @@ void loop() {
       delay(15);
     }
    }
+   
    // Manually rotate servo to aim at target direction
-   //else {
     digitalWrite(ledPin, LOW); // keep LED off
     val = analogRead(potPort); // read potentiometer value (0 to 1023)
     val = map(val, 0, 1023, 0, 180); // Re-map val to servo (0 to 180)
     shootServo.write(val); // set servo position based off val
-   //}
+    
    delay(15);
 }
