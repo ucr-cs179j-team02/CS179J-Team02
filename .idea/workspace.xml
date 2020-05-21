@@ -158,11 +158,11 @@
     <option name="LAST_COMMIT_MESSAGE" value="refactor config" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="398" y="0" key="CommitChangelistDialog2" timestamp="1590093167300">
+    <state x="398" y="0" key="CommitChangelistDialog2" timestamp="1590093520226">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="265" y="0" key="CommitChangelistDialog2/0.0.1280.720@0.0.1280.720" timestamp="1589756806757" />
-    <state x="398" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1590093167300" />
+    <state x="398" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1590093520226" />
     <state x="493" y="196" key="FileChooserDialogImpl" timestamp="1589923259371">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
@@ -180,11 +180,11 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="400" y="84" key="RollbackChangesDialog/0.0.1280.720@0.0.1280.720" timestamp="1588875670546" />
-    <state x="356" y="137" key="Vcs.Push.Dialog.v2" timestamp="1590093171233">
+    <state x="356" y="137" key="Vcs.Push.Dialog.v2" timestamp="1590093527030">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="237" y="91" key="Vcs.Push.Dialog.v2/0.0.1280.720@0.0.1280.720" timestamp="1589756816484" />
-    <state x="356" y="137" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1590093171233" />
+    <state x="356" y="137" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1590093527030" />
     <state x="675" y="416" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1590089355868">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
