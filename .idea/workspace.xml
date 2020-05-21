@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="612639d8-7fca-4276-8509-db79269b2e28" name="Default Changelist" comment="refactor server-client framework use multiple components minimal latency">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CS179J-Team02.iml" afterDir="false" />
+    <list default="true" id="612639d8-7fca-4276-8509-db79269b2e28" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.circleci/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.circleci/config.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +72,7 @@
       <workItem from="1589668607361" duration="42000" />
       <workItem from="1589756430235" duration="440000" />
       <workItem from="1589923250061" duration="13000" />
-      <workItem from="1590089329171" duration="4163000" />
+      <workItem from="1590089329171" duration="4782000" />
     </task>
     <task id="LOCAL-00001" summary="update client so server can trigger an led">
       <created>1587603614684</created>
@@ -142,7 +137,21 @@
       <option name="project" value="LOCAL" />
       <updated>1590093168601</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="change config to hello world to get a base layer working">
+      <created>1590093521107</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1590093521107</updated>
+    </task>
+    <task id="LOCAL-00011" summary="set a base layer for python config">
+      <created>1590093731668</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1590093731668</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -155,14 +164,16 @@
     <MESSAGE value="rename config to work" />
     <MESSAGE value="refactor circleci config" />
     <MESSAGE value="refactor config" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor config" />
+    <MESSAGE value="change config to hello world to get a base layer working" />
+    <MESSAGE value="set a base layer for python config" />
+    <option name="LAST_COMMIT_MESSAGE" value="set a base layer for python config" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="398" y="0" key="CommitChangelistDialog2" timestamp="1590093520226">
+    <state x="398" y="0" key="CommitChangelistDialog2" timestamp="1590093729788">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="265" y="0" key="CommitChangelistDialog2/0.0.1280.720@0.0.1280.720" timestamp="1589756806757" />
-    <state x="398" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1590093520226" />
+    <state x="398" y="0" key="CommitChangelistDialog2/0.0.1920.1080@0.0.1920.1080" timestamp="1590093729788" />
     <state x="493" y="196" key="FileChooserDialogImpl" timestamp="1589923259371">
       <screen x="0" y="0" width="1280" height="720" />
     </state>
@@ -180,11 +191,11 @@
       <screen x="0" y="0" width="1280" height="720" />
     </state>
     <state x="400" y="84" key="RollbackChangesDialog/0.0.1280.720@0.0.1280.720" timestamp="1588875670546" />
-    <state x="356" y="137" key="Vcs.Push.Dialog.v2" timestamp="1590093527030">
+    <state x="356" y="137" key="Vcs.Push.Dialog.v2" timestamp="1590093733086">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="237" y="91" key="Vcs.Push.Dialog.v2/0.0.1280.720@0.0.1280.720" timestamp="1589756816484" />
-    <state x="356" y="137" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1590093527030" />
+    <state x="356" y="137" key="Vcs.Push.Dialog.v2/0.0.1920.1080@0.0.1920.1080" timestamp="1590093733086" />
     <state x="675" y="416" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1590089355868">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
