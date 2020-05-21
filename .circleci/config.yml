@@ -1,24 +1,8 @@
 version: 2.1
-
 jobs:
-  build-and-test:
+  build:
     docker:
-      - image: circleci/python:3.8.1
+      - image: circleci/node:4.8.2 # the primary container, where your job's commands are run
     steps:
-      - run:
-        name: install PlatformIO
-        command: sudo pip install -U platformio
-      - run:
-        name: install current code as a PlatformIO library with all dependencies
-        command: platformio lib -g install file://.
-      - run:
-        name: install Arduino Core for ESP8266
-        command: platformio platform install espressif8266
-      - run:
-          name: Test NodeMCU
-          command: platformio ci ./NodeMCU/src/ --board=nodemcuv2
-
-workflows:
-  main:
-    jobs:
-      - build-and-test
+      - checkout # check out the code in the project directory
+      - run: echo "hello world" # run the `echo` command
