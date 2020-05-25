@@ -9,18 +9,52 @@ void setup() {
   pinMode(ledPin3, OUTPUT);
 }
 
-// the loop function runs over and over again forever
+// need a signal first. digitalRead?
+
 void loop() {
-  digitalWrite(ledPin1, HIGH); // turn LED on
-  delay(1000);
-  digitalWrite(ledPin1, LOW); 
-  delay(1000); 
-  digitalWrite(ledPin2, HIGH); // turn LED on
-  delay(1000);
-  digitalWrite(ledPin2, LOW); 
-  delay(1000); 
-  digitalWrite(ledPin3, HIGH); // turn LED on
-  delay(1000);
-  digitalWrite(ledPin3, LOW); 
+  /* 
+   * Danger Level: 1
+   * No reaction
+   */
+  if (signal == 1) {
+    digitalWrite(ledPin1, LOW); 
+    digitalWrite(ledPin2, LOW); 
+    digitalWrite(ledPin3, LOW); 
+  }
+  
+  /*
+   * Danger Level: 2
+   * Light show to grab threat's attention that there is a boundary.
+   */
+  else if (signal == 2) {
+    ff
+  }
+
+  /*
+   * Danger Level: 3
+   * Emergency Warning. Lights will flash continuously.
+   */
+  else if (signal == 3) {
+    digitalWrite(ledPin1, HIGH);
+    digitalWrite(ledPin2, HIGH);
+    digitalWrite(ledPin3, HIGH);
+    delay(200);
+    digitalWrite(ledPin1, LOW); 
+    digitalWrite(ledPin2, LOW); 
+    digitalWrite(ledPin3, LOW); 
+    delay(200);
+  }
+
+  /*
+   * Danger Level: 4
+   * Activation Mode. Lights will stay on.
+   * 
+   */
+  else if (signal == 4) {
+    digitalWrite(ledPin1, HIGH);
+    digitalWrite(ledPin2, HIGH);
+    digitalWrite(ledPin3, HIGH);
+  }
+ 
   delay(1000); 
 }
