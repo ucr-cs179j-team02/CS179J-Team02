@@ -9,9 +9,11 @@ void setup() {
   pinMode(ledPin3, OUTPUT);
 }
 
-// need a signal first. digitalRead?
+// need a signal first from server still. This program is in preparation.
 
 void loop() {
+  // temp signal value
+  int signal = 4;
   /* 
    * Danger Level: 1
    * No reaction
@@ -27,7 +29,15 @@ void loop() {
    * Light show to grab threat's attention that there is a boundary.
    */
   else if (signal == 2) {
-    ff
+    digitalWrite(ledPin1, HIGH);
+    digitalWrite(ledPin3, LOW);
+    delay(600);
+    digitalWrite(ledPin1, LOW);
+    digitalWrite(ledPin2, HIGH);
+    delay(600);
+    digitalWrite(ledPin2, LOW);
+    digitalWrite(ledPin3, HIGH);
+    delay(600);
   }
 
   /*
@@ -48,7 +58,6 @@ void loop() {
   /*
    * Danger Level: 4
    * Activation Mode. Lights will stay on.
-   * 
    */
   else if (signal == 4) {
     digitalWrite(ledPin1, HIGH);
@@ -56,5 +65,4 @@ void loop() {
     digitalWrite(ledPin3, HIGH);
   }
  
-  delay(1000); 
 }
