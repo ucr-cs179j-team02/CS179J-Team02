@@ -11,7 +11,6 @@ jobs:
       - run: pip install matplotlib
       - run: pip install Pillow
       - run: pip install tensorflow-object-detection-api
-      - run: pip3 install protobuf==3.8.0
       - run: platformio platform install espressif8266
       - run:
           name: Masked Detection Test
