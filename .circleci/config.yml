@@ -1,0 +1,21 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.8.1 # the primary container, where your job's commands are run
+    steps:
+      - checkout # check out the code in the project directory
+      - run: sudo pip install -U platformio
+      - run: platformio platform install espressif8266
+      - run:
+          name: Belt Server Test
+          command: platformio ci ./NodeMCU/src/Server/belt_server/belt_server.ino --board=nodemcuv2
+      - run:
+          name: Hat Server Test
+          command: platformio ci ./NodeMCU/src/Server/hat_server/hat_server.ino --board=nodemcuv2
+      - run:
+          name: Belt Client Test
+          command: platformio ci ./NodeMCU/src/Client/belt_client/belt_client.ino --board=nodemcuv2
+      - run:
+          name: Hat Client Test
+          command: platformio ci ./NodeMCU/src/Client/hat_client/hat_client.ino --board=nodemcuv2
