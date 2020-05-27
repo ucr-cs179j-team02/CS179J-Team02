@@ -19,3 +19,9 @@ jobs:
       - run:
           name: Hat Client Test
           command: platformio ci ./NodeMCU/src/Client/hat_client/hat_client.ino --board=nodemcuv2
+      - run:
+          name: Masked Detection Test
+          command: python single_img.py masked.jpg
+      - run:
+          name: Unmasked Detection Test
+          command: python single_img.py unmasked.jpg
