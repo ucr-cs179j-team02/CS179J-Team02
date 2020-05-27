@@ -6,6 +6,7 @@ jobs:
     steps:
       - checkout # check out the code in the project directory
       - run: sudo pip install -U platformio
+      - run: pip install numpy
       - run: platformio platform install espressif8266
       - run:
           name: Belt Server Test
