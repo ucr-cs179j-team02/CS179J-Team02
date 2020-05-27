@@ -24,8 +24,15 @@ void setup() {
    pinMode(buzzer, OUTPUT); // setup for buzzer
 }
 
+// need a signal first from server still. This program is in preparation.
 
 void loop() {
+  /*
+   * Manual Mode
+   * In case of Emergency, this mode will let the user activate the spray
+   * under their direct control. Rotate and shoot. Manual mode should always
+   * be available to control. Higher level importance than server instructions.
+   */
    buttonState = digitalRead(buttonPin);  // read button state for spraying
    buzzerState = digitalRead(buzzerButton); // read button state for buzzer
    // Automatically move servo to shoot the spray
@@ -42,19 +49,53 @@ void loop() {
     }
     noTone(buzzer);
    }
-   
-   // Manually rotate servo to aim at target direction
-    digitalWrite(ledPin, LOW); // keep LED off
-    val = analogRead(potPort); // read potentiometer value (0 to 1023)
-    val = map(val, 0, 1023, 0, 90); // Re-map val to servo (0 to 90)
-    shootServo.write(val); // set servo position based off val
-    
-    // buzzer goes off when target comes closer
-    if (buzzerState == HIGH) {
-      tone(buzzer, 1000);
-      delay(800);
-      noTone(buzzer);
-      delay(800);
-    }
+  // Manually rotate servo to aim at target direction
+  digitalWrite(ledPin, LOW); // keep LED off
+  val = analogRead(potPort); // read potentiometer value (0 to 1023)
+  val = map(val, 0, 1023, 0, 90); // Re-map val to servo (0 to 90)
+  shootServo.write(val); // set servo position based off val
+  // buzzer goes off when target comes closer
+  if (buzzerState == HIGH) {
+    tone(buzzer, 1000);
+    delay(800);
+    noTone(buzzer);
+    delay(800);
+  }
    delay(15);
+
+  int signal = 3;
+  /*
+   * Danger Level: 1
+   * No reaction.
+   */
+  if (signal == 1){
+    noTone(buzzer);
+  }
+  /*
+   * Danger Level: 2
+   * Unmasked person detected. Slow warning.
+   */
+  if (signal == 2){
+    tone(buzzer, 800);
+    delay(1000);
+    noTone(buzzer);
+    delay(1000);
+  }
+  /*
+   * Danger Level: 3
+   * Emergency Warning. Short pattern to alert user and surroundings.
+   */
+  if (signal == 3){
+    tone(buzzer, 700);
+    delay(600);
+    tone(buzzer, 500);
+    delay(600);
+  }
+  /*
+   * Danger Level: 4
+   * Activation Mode. Buzzer will go off continuously during spray.
+   */
+  if (signal == 4){
+    tone(buzzer, 1000);
+  }
 }
