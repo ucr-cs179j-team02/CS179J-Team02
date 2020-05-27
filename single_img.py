@@ -134,10 +134,7 @@ def load_image_into_numpy_array(image):
 from os import listdir
 from os.path import isfile, join
 
-#TEST_IMAGES_BASE_PATH = "C:/Users/hamza/Desktop/TensorFlow/workspace/RONA_ZONA/single_img_tests/"
-#TEST_IMAGES_PATHS = [TEST_IMAGES_BASE_PATH+f for f in listdir(TEST_IMAGES_BASE_PATH) if isfile(join(TEST_IMAGES_BASE_PATH, f))]
-
-system_path = "C:/Users/hamza/Desktop/TensorFlow/workspace/RONA_ZONA/single_img_tests/"
+system_path = "./single_img_tests/"
 image_path = system_path + sys.argv[1]
 #image_path = system_path + input("Enter the name of the image you wish to test: ")
 
