@@ -39,7 +39,7 @@ with detection_graph.as_default():
   od_graph_def = tf.compat.v1.GraphDef()
   with tf.compat.v2.io.gfile.GFile(PATH_TO_FROZEN_GRAPH, 'rb') as fid:
     serialized_graph = fid.read()
-    od_graph_def.Parse(serialized_graph)
+    od_graph_def.ParseFromString(serialized_graph.read())
     tf.import_graph_def(od_graph_def, name='')
 
 category_index = label_map_util.create_category_index_from_labelmap(PATH_TO_LABELS, use_display_name=True)
