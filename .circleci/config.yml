@@ -8,6 +8,7 @@ jobs:
       - run: sudo pip install -U platformio
       - run: pip install numpy
       - run: pip install tensorflow
+      - run: pip install matplotlib
       - run: platformio platform install espressif8266
       - run:
           name: Belt Server Test
