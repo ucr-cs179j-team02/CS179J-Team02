@@ -11,7 +11,14 @@ jobs:
       - run: pip install matplotlib
       - run: pip install Pillow
       - run: pip install tensorflow-object-detection-api
+      - run: pip3 install protobuf==3.8.0
       - run: platformio platform install espressif8266
+      - run:
+          name: Masked Detection Test
+          command: python single_img.py masked.jpg
+      - run:
+          name: Unmasked Detection Test
+          command: python single_img.py unmasked.jpg
       - run:
           name: Belt Server Test
           command: platformio ci ./NodeMCU/src/Server/belt_server/belt_server.ino --board=nodemcuv2
@@ -24,9 +31,3 @@ jobs:
       - run:
           name: Hat Client Test
           command: platformio ci ./NodeMCU/src/Client/hat_client/hat_client.ino --board=nodemcuv2
-      - run:
-          name: Masked Detection Test
-          command: python single_img.py masked.jpg
-      - run:
-          name: Unmasked Detection Test
-          command: python single_img.py unmasked.jpg
