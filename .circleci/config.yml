@@ -10,6 +10,7 @@ jobs:
       - run: pip install tensorflow
       - run: pip install matplotlib
       - run: pip install Pillow
+      - run: pip install tensorflow-object-detection-api
       - run: platformio platform install espressif8266
       - run:
           name: Belt Server Test
