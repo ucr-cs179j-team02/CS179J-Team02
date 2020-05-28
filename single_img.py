@@ -39,7 +39,7 @@ PATH_TO_LABELS = 'execute/label_map.pbtxt'
 detection_graph = tf.Graph()
 with detection_graph.as_default():
   od_graph_def = tf.compat.v1.GraphDef()
-  with tf.gfile.GFile(PATH_TO_FROZEN_GRAPH, 'rb') as fid:
+  with tf.compat.v2.io.gfile.GFile(PATH_TO_FROZEN_GRAPH, 'r') as fid:
     serialized_graph = fid.read()
     print(type(serialized_graph))
     od_graph_def.ParseFromString(serialized_graph)
