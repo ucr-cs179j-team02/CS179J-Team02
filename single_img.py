@@ -7,7 +7,7 @@ sys.path.append("C:\\Users\\hamza\\Desktop\\TensorFlow\\models\\research\\")
 sys.path.append("C:\\Users\\hamza\\Desktop\\TensorFlow\\models\\research\\object_detection\\utils")
 
 import tarfile
-import tensorflow.compat.v1 as tf
+import tensorflow as tf
 import zipfile
 
 from distutils.version import StrictVersion
