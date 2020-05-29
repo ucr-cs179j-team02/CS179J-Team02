@@ -1,23 +1,28 @@
-#include <FastLED.h>
+#include "FastLED.h"
 
-#define LED_PIN 7
-#define NUM_LEDS 10
-
-CRGB leds(NUM_LEDS);
+//#define LED_PIN 4
+#define DATA_PIN    4
+#define LED_TYPE    WS2812B
+#define COLOR_ORDER GRB
+#define NUM_LEDS    10
+#define BRIGHTNESS  60
+CRGB leds[NUM_LEDS];
 
 void setup() {
-  FastLED.addLeds<WS2812, LED_PIN, GRB>(leds, NUM_LEDS);
+  delay(1500); // 3 second delay for recovery
+  FastLED.addLeds<LED_TYPE,DATA_PIN,COLOR_ORDER>(leds, NUM_LEDS).setCorrection(TypicalLEDStrip);
+  FastLED.setBrightness(BRIGHTNESS);
 }
 
 void loop() {
   // temp signal value
-  int signal = 1;
+  int signal = 3;
   /*
    * Danger Level: 1
    * No reaction
    */
   if (signal == 1) {
-    FastLED.clear(0)
+    FastLED.clear(0);
   }
   /*
    * Danger Level: 2
@@ -51,20 +56,23 @@ void loop() {
    * Emergency Warning. Lights will flash red continuously.
    */
   else if (signal == 3) {
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < 10; i++) {
       leds[i] = CRGB(255,0,0);
       FastLED.show();
     }
-    delay(500);
-    FastLED.clear();
-    delay(300);
+    delay(250);
+    for (int i = 0; i < 10; i++) {
+      leds[i] = CRGB(0,0,0);
+      FastLED.show();
+    }
+    delay(250);
   }
   /*
    * Danger Level: 4
    * Activation Mode. Lights will stay on.
    */
   else if (signal == 4) {
-    for (int i = 0; i < 20; i++) {
+    for (int i = 0; i < 10; i++) {
       leds[i] = CRGB(255,255,255);  // white
       FastLED.show();
     }
