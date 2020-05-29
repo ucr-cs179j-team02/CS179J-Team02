@@ -7,6 +7,7 @@ jobs:
       - checkout # check out the code in the project directory
       - run: sudo pip install -U platformio
       - run: platformio platform install espressif8266
+      - run: pio lib install "Stepper"
       - run:
           name: Belt Server Test
           command: platformio ci ./NodeMCU/src/Server/belt_server/belt_server.ino --board=nodemcuv2
