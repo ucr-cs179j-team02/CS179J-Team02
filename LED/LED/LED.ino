@@ -13,8 +13,8 @@ int signal = 0;
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 
-const char* ssid = "DD";
-const char* password = "Lunalanai@1";
+const char* ssid = "user";
+const char* password = "pass";
  
 ESP8266WebServer server(80);
 
