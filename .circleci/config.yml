@@ -23,7 +23,7 @@ jobs:
       - run:
           name: Hat Laser Test
           command: platformio ci ./NodeMCU/src/hat/hat.ino --board=nodemcuv2
-       - run:
+      - run:
           name: Belt Test
           command: platformio ci ./LED/LED/LED.ino --board=nodemcuv2
  
