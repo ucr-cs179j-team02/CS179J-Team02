@@ -26,9 +26,6 @@ jobs:
           name: Hat Client Test
           command: platformio ci ./NodeMCU/src/Client/hat_client/hat_client.ino --board=nodemcuv2
       - run:
-          name: Hat Laser Test
-          command: platformio ci ./NodeMCU/src/hat/hat.ino --board=nodemcuv2
-      - run:
           name: Belt Test
           command: platformio ci ./LED/LED/LED.ino --board=nodemcuv2
  
