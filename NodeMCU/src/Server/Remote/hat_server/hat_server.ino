@@ -7,8 +7,8 @@
 #define IN4   D8   // IN4 is connected to NodeMCU pin D4 (GPIO2)
 #define MotorInterfaceType 8
 
-const char* ssid = "AllYourBaseAreBelongToUs";
-const char* password = "weAreNinjas";
+const char* ssid = "---";
+const char* password = "---";
  
 ESP8266WebServer server(80);
 AccelStepper stepper = AccelStepper(MotorInterfaceType, IN1, IN3, IN2, IN4);

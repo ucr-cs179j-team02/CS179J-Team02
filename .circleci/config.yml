@@ -8,6 +8,7 @@ jobs:
       - run: sudo pip install -U platformio
       - run: platformio platform install espressif8266
       - run: pio lib install "Stepper"
+      - run: pio lib install "AccelStepper"
       - run:
           name: Local Belt Server Test
           command: platformio ci ./NodeMCU/src/Server/Local/belt_server/belt_server.ino --board=nodemcuv2
