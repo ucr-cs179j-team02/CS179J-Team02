@@ -13,3 +13,44 @@ Rona Zona utilizes several Embedded subsystems in order to perform its many func
     NodeMCU Server: A online server that allows individual systems to be created and connected virtually, allowing for remote construction
  
 To learn more about any individual system please go to their corresponding folders.
+This project has multiple systems which individually require their own configurations. This guide will go over the necessary dependencies and installations for the following systems: Computer vision on Desktop/on the PI, Server, Belt, spray, and Hat subsystems.
+
+# Starting Up
+The first step is to clone the repository within your work environment, either desktop or Rapsberry PI.
+
+Git clone https://github.com/edick007/172_frontend_development.git
+
+# Computer Vision Setup
+
+For both the raspberry pi and the desktop versions you need to have OpenCV and Tensorflow installed on the machines. 
+
+--Raspberry Pi 3---
+
+For the raspberry pi 3. The first step is to make sure the OS is updated to its latest version. You can use the following commands: 
+
+sudo apt-get update
+sudo apt-get dist-upgrade
+Next you need to configure the environment so that all dependencies have a path to one another. Make a tensorflow file and cd into it. Mkdir TF_folder => cd TF_folder lib
+Now we are going to clone the repository containing our model and other software. Make sure to have the most up to date model along with the graph files within your folder. Now move the rpi_run_model.py, label_map_util.py, along with the preprocessing_scripts folder to this new folder. The rest of the application should be installed within this directory.
+
+Second, we need to set up a virtual environment for our model to run on. You can do this by running: sudo pip3 install virtualenv
+
+And then set up a environment with: 
+python3 -m venv my_enviornment					   source my_enviornment/bin/activate
+Third, we have to install tensorflow and OpenCV. For tensorflow you can simply use
+	pip3 install tensorflow
+
+For OpenCV there are many necessary configurations you will need. The first 3 are for configuring your webcam within the raspberry pi along with OpenCV:
+
+sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+sudo apt-get install libxvidcore-dev libx264-dev
+sudo apt-get install qt4-dev-tools libatlas-base-dev
+
+Finally you can pip install openCV
+
+pip3 install opencv-python
+	Lastly you need to make sure that the raspberry pi camera can be activated. Go into the raspberry pis system interface and make sure the pi camera is enabled.
+Once everything is installed and configured your can run this command to start the custom model 
+python3 rpi_run_model.py
+
+
