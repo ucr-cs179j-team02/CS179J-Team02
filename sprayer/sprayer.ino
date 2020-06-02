@@ -12,6 +12,7 @@ int pos = 0; // variable for moving small servo (shoot)
 const int buzzer = 9;
 
 void setup() {
+   Serial.begin(9600);
    rotateServo.attach(10);
    shootServo.attach(11);
    pinMode(buttonPin, INPUT);
@@ -27,8 +28,28 @@ void loop() {
    * a state where sprayer is shooting.
    */
   // temp received signal value
-  int signal = 3;
-  
+  int signal = 1;
+  if (Serial.available()) {
+    switch(Serial.read()) {
+      case '1': signal = 1;
+                break;
+      case '2': signal = 2;
+                break;
+      case '3': signal = 3;
+                break;
+      case '4': signal = 4;
+                break;
+    }
+  }
+  /*
+   * Shell Script on Python:
+   * import serial
+   * ser = serial.Serial('COM3', 9600)
+   * while 1:
+   *    val = input("Input Danger Level(1-4):");
+   *    ser.write(val.encode())
+   */
+ 
   noTone(buzzer);
   buttonState = digitalRead(buttonPin);  
   if (buttonState == HIGH) { // button press
