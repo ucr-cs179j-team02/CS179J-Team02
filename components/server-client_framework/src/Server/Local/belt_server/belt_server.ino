@@ -1,5 +1,7 @@
-
 #include "FastLED.h"
+#include <ESP8266WiFi.h>
+#include <ESP8266WebServer.h>
+#include <ESP8266mDNS.h>
 
 //#define LED_PIN 4
 #define DATA_PIN    4
@@ -10,11 +12,8 @@
 CRGB leds[NUM_LEDS];
 int signal = 0;
 
-#include <ESP8266WiFi.h>
-#include <ESP8266WebServer.h>
-
-const char* ssid = "user";
-const char* password = "pass";
+const char *ssid = "RonaZona_belt";
+const char *password = "squidward420";
  
 ESP8266WebServer server(80);
 
@@ -77,6 +76,7 @@ void belt1(){
       delay(50);
     }
 }
+
 void belt2(){
   server.send(200, "", "");
     for (int i = 0; i < 10; i++) {
@@ -90,46 +90,53 @@ void belt2(){
     }
     delay(250);
 }
+
 void belt3(){
   for (int i = 0; i < 10; i++) {
       leds[i] = CRGB(255,255,255);  // white
       FastLED.show();
   }
 }
-
+ 
 void setup() {
   Serial.begin(115200);
   
   delay(1500); // 3 second delay for recovery
   FastLED.addLeds<LED_TYPE,DATA_PIN,COLOR_ORDER>(leds, NUM_LEDS).setCorrection(TypicalLEDStrip);
   FastLED.setBrightness(BRIGHTNESS);
-  WiFi.begin(ssid, password);
+  
+  WiFi.softAP(ssid, password);
+  IPAddress Ip(192, 168, 1, 1);
+  IPAddress NMask(255, 255, 255, 0);
 
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
+  WiFi.softAPConfig(Ip, Ip, NMask);
   
   Serial.println();
   Serial.print("Server IP address: ");
-  Serial.println(WiFi.localIP());
+  Serial.println(WiFi.softAPIP());
+  Serial.print("Server MAC address: ");
+  Serial.println(WiFi.softAPmacAddress());
 
-  server.on("/off", handleRequestOff);
-  server.on("/belt1", handleRequestBelt1);
-  server.on("/belt2", handleRequestBelt2);
-  server.on("/belt3", handleRequestBelt3);
+  if (MDNS.begin("esp8266")) {              // Start the mDNS responder for esp8266.local
+    Serial.println("mDNS responder started");
+  } else {
+    Serial.println("Error setting up MDNS responder!");
+  }
 
-  
+  server.on("/far", handleRequestOff);
+  server.on("/closer", handleRequestBelt1);
+  server.on("/close", handleRequestBelt2);
+  server.on("/veryclose", handleRequestBelt3);
   server.onNotFound(handleNotFound);
-  server.begin();
   
+  server.begin();
   Serial.println("Server listening");
 }
  
 void loop() {
   server.handleClient();
-
-    if (signal == 1) {
+  
+  if (signal == 1) {
     FastLED.clear(0);
   }
   /*
@@ -185,6 +192,4 @@ void loop() {
       FastLED.show();
     }
   }
-
 }
-

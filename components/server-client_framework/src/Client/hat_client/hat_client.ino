@@ -3,6 +3,7 @@
  
 void setup() { 
   pinMode(D1, INPUT);
+  pinMode(D2, INPUT);
   Serial.begin(115200);                                  //Serial connection
   WiFi.begin("RonaZona_hat", "squidward420");                //WiFi connection
   while (WiFi.status() != WL_CONNECTED) {
@@ -16,11 +17,17 @@ void loop() {
   if(WiFi.status() == WL_CONNECTED){                      //Check WiFi connection status
     WiFiClient client;
     HTTPClient http;                                      //Declare object of class HTTPClient
-    if(digitalRead(D1) == HIGH){
-      http.begin(client, "http://192.168.1.1:80/hat");
+    if(digitalRead(D2) == HIGH && digitalRead(D1) == HIGH){
+      http.begin(client, "http://192.168.1.1:80/veryclose");
+    }
+    else if(digitalRead(D2) == HIGH && digitalRead(D1) == LOW){
+      http.begin(client, "http://192.168.1.1:80/close");
+    }
+    else if(digitalRead(D2) == LOW && digitalRead(D1) == HIGH){
+      http.begin(client, "http://192.168.1.1:80/closer");
     }
     else{
-      http.begin(client, "http://192.168.1.1:80/off");
+      http.begin(client, "http://192.168.1.1:80/far");
     }
     http.GET();                            //Send the request
     http.end();
