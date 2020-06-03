@@ -24,7 +24,8 @@ Git clone https://github.com/ucr-cs179j-team02/CS179J-Team02
 
 For both the raspberry pi and the desktop versions you need to have OpenCV and Tensorflow installed on the machines. 
 
---Raspberry Pi 3---
+Raspberry Pi 3 & Desktop
+------
 
 For the raspberry pi 3. The first step is to make sure the OS is updated to its latest version. You can use the following commands: 
 
@@ -58,6 +59,8 @@ Finally you can pip install openCV
 	pip3 install opencv-python
 
 Lastly you need to make sure that the raspberry pi camera can be activated. Go into the raspberry pis system interface and make sure the pi camera is enabled.
+	
+# Running Computer Vision from Raspberry Pi
 
 Once everything is installed and configured your can run this command to start the custom model 
 
