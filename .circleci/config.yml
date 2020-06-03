@@ -12,20 +12,34 @@ jobs:
       - run: pio lib install "FastLED"
       - run:
           name: Local Belt Server Test
-          command: platformio ci ./NodeMCU/src/Server/Local/belt_server/belt_server.ino --board=nodemcuv2
+          command: platformio ci ./components/server-client_framework/src/Server/Local/belt_server/belt_server.ino --board=nodemcuv2
       - run:
           name: Local Hat Server Test
-          command: platformio ci ./NodeMCU/src/Server/Local/hat_server/hat_server.ino --board=nodemcuv2
+          command: platformio ci ./components/server-client_framework/src/Server/Local/hat_server/hat_server.ino --board=nodemcuv2
       - run:
           name: Remote Hat Server Test
-          command: platformio ci ./NodeMCU/src/Server/Remote/hat_server/hat_server.ino --board=nodemcuv2
+          command: platformio ci ./components/server-client_framework/src/Server/Remote/hat_server/hat_server.ino --board=nodemcuv2
+      - run:
+          name: Remote Belt Server Test
+          command: platformio ci ./components/server-client_framework/src/Server/Remote/belt_server/belt_server.ino --board=nodemcuv2
       - run:
           name: Belt Client Test
-          command: platformio ci ./NodeMCU/src/Client/belt_client/belt_client.ino --board=nodemcuv2
+          command: platformio ci ./components/server-client_framework/src/Client/belt_client/belt_client.ino --board=nodemcuv2
       - run:
           name: Hat Client Test
-          command: platformio ci ./NodeMCU/src/Client/hat_client/hat_client.ino --board=nodemcuv2
+          command: platformio ci ./components/server-client_framework/src/Client/hat_client/hat_client.ino --board=nodemcuv2
       - run:
-          name: Belt Test
-          command: platformio ci ./LED/LED/LED.ino --board=nodemcuv2
- 
+          name: Buzzer Test
+          command: platformio ci ./components/buzzer/buzzer.ino --board=nodemcuv2
+      - run:
+          name: Communication Test
+          command: platformio ci ./components/Communication/Communication.ino --board=nodemcuv2
+      - run:
+          name: Servo Test
+          command: platformio ci ./components/servo/servo.ino --board=nodemcuv2
+      - run:
+          name: Sprayer Test
+          command: platformio ci ./components/sprayer/sprayer.ino --board=nodemcuv2
+      - run:
+          name: UltraSonic Test
+          command: platformio ci ./components/UltraSonic/ultrasonic_module.ino --board=nodemcuv2

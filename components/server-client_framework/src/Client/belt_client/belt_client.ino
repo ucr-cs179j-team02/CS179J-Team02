@@ -18,16 +18,16 @@ void loop() {
     WiFiClient client;
     HTTPClient http;                                      //Declare object of class HTTPClient
     if(digitalRead(D2) == HIGH && digitalRead(D1) == HIGH){
-      http.begin(client, "http://192.168.1.1:80/belt");
+      http.begin(client, "http://192.168.1.1:80/veryclose");
     }
     else if(digitalRead(D2) == HIGH && digitalRead(D1) == LOW){
-      http.begin(client, "http://192.168.1.1:80/lights");
+      http.begin(client, "http://192.168.1.1:80/close");
     }
     else if(digitalRead(D2) == LOW && digitalRead(D1) == HIGH){
-      http.begin(client, "http://192.168.1.1:80/spray");
+      http.begin(client, "http://192.168.1.1:80/closer");
     }
     else{
-      http.begin(client, "http://192.168.1.1:80/off");
+      http.begin(client, "http://192.168.1.1:80/far");
     }
     http.GET();                            //Send the request
     http.end();
