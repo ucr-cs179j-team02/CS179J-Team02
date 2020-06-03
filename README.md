@@ -86,3 +86,17 @@ Once everything is installed and configured your can run this command to start t
 #### If everything is successful, you will have a working computer vision model that can classify between masked and unmasked persons:
 
 ![Imgur](https://i.imgur.com/8ZKzp5z.jpg)
+
+# Running the Server-Client Interface
+* If you are running the Rona Zona using the local framework (without an external internet connection), there is no need for any setup. Just upload the code to your NodeMCUs and you should be good to go.
+* If you are running the Rona Zona using the remote framework (with an external internet connection), you have to make a few edits.
+	* Edit the server and client code in the following files with your WiFi Network name and password 
+		1. ./components/server-client_framework/src/Server/Remote/hat_server/hat_server.ino (lines 10 and 11)
+		2. ./components/server-client_framework/src/Server/Remote/belt_server/belt_server.ino (lines 14 and 15)
+		3. ./components/server-client_framework/src/Client/belt_client/belt_client.ino (line 8)
+		4. ./components/server-client_framework/src/Client/hat_client/hat_client.ino (line 8)
+	* Next, you'll have to port forward your router. [Here](https://www.whatismyip.com/port-forwarding/) is a guide in doing so.
+	* After that, you will need to go [here](https://www.whatismyip.com/) to find your public IPv4.
+	* Finally, replace "192.168.1.1:80" with your public IPv4 in the following files
+		5. ./components/server-client_framework/src/Client/belt_client/belt_client.ino (lines 21, 24, 27. 30)
+		6. ./components/server-client_framework/src/Client/hat_client/hat_client.ino (lines 21, 24, 27. 30)
