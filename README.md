@@ -3,6 +3,11 @@ Rona Zona is a Embedded Senior Design Project
  
 # CS179J-Team02
 Rona Zona is a Self contained wearable device that keeps unwanted people six feet away. The Rona Zona is the perfect device if you are cautious about contracting person to person illnesses. The device monitors surroundings using Computer Vision. If a potential hazard gets too close, Rona Zona will alert and disinfect the surroundings.
+
+    
+| Development Board | Coding Language | Servos | Buzzer | Lighting System | Arduino IDE Setup |
+|-----------------|-------------|---------------------------------|-----------------------------|----|---|
+| RexQualis UNO R3 |  Arduino   |   (1) MS24 Digital Servo Motor - Ideally 2 <br> (1) SG90 MicroServo Motor - Temporary  |  5V DC Buzzer | WS2812B LEDs | Visit this website and follow the instructions to download Arduino for yourself <br> https://www.arduino.cc/en/guide/windows
  
 # Embedded Components
 Rona Zona utilizes several Embedded subsystems in order to perform its many functions. 
