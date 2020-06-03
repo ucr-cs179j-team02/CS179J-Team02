@@ -18,6 +18,7 @@ RexQualis UNO R3
 Arduino
 # Servos
 (1) MS24 Digital Servo Motor - Ideally 2
+
 (1) SG90 MicroServo Motor - Temporary
 # Buzzer
 5V DC Buzzer
