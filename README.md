@@ -63,4 +63,18 @@ Once everything is installed and configured your can run this command to start t
 
 	python3 rpi_run_model.py
 
+# Running Computer Vision from Desktop
 
+#### A prerequisite for the following is a web cam. Please make sure that the web camera allows this program to execute it. You can allow access to all and specific apps by following [this link](https://support.microsoft.com/en-us/help/4558611/turn-on-app-permissions-for-camera-and-microphone-on-windows-10).
+
+1. Please follow the same installation steps as mentioned in the previous section.
+
+2. Now, download the repository and keep the directory structures as is.
+
+3. From the root directory, execute:
+
+	python new_run_model.py
+
+#### If everything is successful, you will have a working computer vision model that can classify between masked and unmasked persons:
+
+![Imgur](https://i.imgur.com/8ZKzp5z.jpg)
