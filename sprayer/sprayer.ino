@@ -7,14 +7,14 @@ const int buttonPin = 12; // where button to be pressed and switch modes is loca
 int buttonState = 0;
 //int potPort = 0; // port= connecting to potentiometeter
 int pos = 0; // variable for moving small servo (shoot)
-
 // Initializing buzzer locations
 const int buzzer = 9;
+int signal_status;
 
 void setup() {
    Serial.begin(9600);
-   rotateServo.attach(10);
-   shootServo.attach(11);
+   rotateServo.attach(11);
+   shootServo.attach(10);
    pinMode(buttonPin, INPUT);
    pinMode(buzzer, OUTPUT);
 }
@@ -23,24 +23,32 @@ void setup() {
 void loop() {
   /*
    * Manual Mode. Initial State.
-   * Manually pressing button will automatically send program to signal 4,
+   * Manually pressing button will automatically send program to signal_status 4,
    * a state where sprayer is shooting.
    */
-  // temp received signal value
-  int signal = 1;
+  // temp received signal_status value
+  
   if (Serial.available()) {
-    switch(Serial.read()) {
-      case '1': signal = 1;
-                break;
-      case '2': signal = 2;
-                break;
-      case '3': signal = 3;
-                break;
-      case '4': signal = 4;
-                break;
-      default:  break;
-    }
+      switch(Serial.read()) {
+        case '1': signal_status = 1;
+                  break;
+        case '2': signal_status = 2;
+                  break;
+        case '3': signal_status = 3;
+                  break;
+        case '4': signal_status = 4;
+                  break;
+        case '5': signal_status = 5;
+                  break;
+        case '6': signal_status = 6;
+                  break;
+        default:  
+          signal_status = 1;
+          break;
+      }
+    
   }
+    Serial.print(signal_status);
   /*
    * Shell Script on Python:
    * import serial
@@ -53,15 +61,15 @@ void loop() {
   noTone(buzzer);
   buttonState = digitalRead(buttonPin);  
   if (buttonState == HIGH) { // button press
-    signal = 4;
+    signal_status = 6;
 }
   
   /*
    * Danger Level: 1
    * No reaction.
    */
-  if (signal == 1){
-    //shootServo.write(0);
+  if (signal_status == 1){
+    rotateServo.write(60);
     noTone(buzzer);
   }
   /*
@@ -69,7 +77,7 @@ void loop() {
    * Unmasked person detected. 
    * Slow warning with buzzer.
    */
-  if (signal == 2){
+  if (signal_status == 2){
     tone(buzzer, 800);
     delay(1000);
     noTone(buzzer);
@@ -81,33 +89,46 @@ void loop() {
    * Short buzzer pattern to alert user and surroundings.
    * Spray will rotate to face unmasked target.
    */
-  if (signal == 3){
-    // val = analogRead(potPort); // read potentiometer value (0 to 1023)
-    // val = map(val, 0, 1023, 0, 90); // Re-map val to servo (0 to 90) based off data
-    // + is left / - is right
-    val = random(-60, 60);
-    shootServo.write(val); // set servo position based off val
+  if (signal_status == 3) { // center
+    
+    rotateServo.write(60);
     tone(buzzer, 700);
     delay(600);
     tone(buzzer, 500);
     delay(600);
-    
   }
+  else if (signal_status == 4) { // left
+    
+    rotateServo.write(120);
+    tone(buzzer, 700);
+    delay(600);
+    tone(buzzer, 500);
+    delay(600);
+  }
+  else if (signal_status == 5) { // right
+    rotateServo.write(0);
+    tone(buzzer, 700);
+    delay(600);
+    tone(buzzer, 500);
+    delay(600);
+  }
+
+  
   /*
-   * Danger Level: 4
+   * Danger Level: 6
    * Activation Mode.
    * Buzzer will go off continuously.
    * Spray will go off.
    */
-  if (signal == 4){
-    tone(buzzer, 1000); // constant 1KHz sound signal
+  if (signal_status == 6){
+    tone(buzzer, 1000); // constant 1KHz sound status
     
     for (pos = 0; pos <= 120; pos += 1) { // goes from 0 to 120 degrees
-    rotateServo.write(pos); // lets servo know what position to be in
+    shootServo.write(pos); // lets servo know what position to be in
     delay(15); // wait 15 ms for servo
     }
     for (pos = 120; pos >= 0; pos -= 1) { // goes from 120 to 0 degrees
-      rotateServo.write(pos);
+      shootServo.write(pos);
       delay(15);
     }
   }
