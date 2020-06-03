@@ -3,6 +3,11 @@ Rona Zona is a Embedded Senior Design Project
  
 # CS179J-Team02
 Rona Zona is a Self contained wearable device that keeps unwanted people six feet away. The Rona Zona is the perfect device if you are cautious about contracting person to person illnesses. The device monitors surroundings using Computer Vision. If a potential hazard gets too close, Rona Zona will alert and disinfect the surroundings.
+
+    
+| Development Board | Coding Language | Servos | Buzzer | Lighting System | Arduino IDE Setup |
+|-----------------|-------------|---------------------------------|-----------------------------|----|---|
+| RexQualis UNO R3 |  Arduino   |   (1) MS24 Digital Servo Motor - Ideally 2 <br> (1) SG90 MicroServo Motor - Temporary  |  5V DC Buzzer | WS2812B LEDs | Visit this website and follow the instructions to download Arduino for yourself <br> https://www.arduino.cc/en/guide/windows
  
 # Embedded Components
 Rona Zona utilizes several Embedded subsystems in order to perform its many functions. 
@@ -24,7 +29,8 @@ Git clone https://github.com/ucr-cs179j-team02/CS179J-Team02
 
 For both the raspberry pi and the desktop versions you need to have OpenCV and Tensorflow installed on the machines. 
 
---Raspberry Pi 3---
+Raspberry Pi 3 & Desktop
+------
 
 For the raspberry pi 3. The first step is to make sure the OS is updated to its latest version. You can use the following commands: 
 
@@ -58,9 +64,25 @@ Finally you can pip install openCV
 	pip3 install opencv-python
 
 Lastly you need to make sure that the raspberry pi camera can be activated. Go into the raspberry pis system interface and make sure the pi camera is enabled.
+	
+# Running Computer Vision from Raspberry Pi
 
 Once everything is installed and configured your can run this command to start the custom model 
 
 	python3 rpi_run_model.py
 
+# Running Computer Vision from Desktop
 
+#### A prerequisite for the following is a web cam. Please make sure that the web camera allows this program to execute it. You can allow access to all and specific apps by following [this link](https://support.microsoft.com/en-us/help/4558611/turn-on-app-permissions-for-camera-and-microphone-on-windows-10).
+
+1. Please follow the same installation steps as mentioned in the previous section.
+
+2. Now, download the repository and keep the directory structures as is.
+
+3. From the root directory, execute:
+
+	python new_run_model.py
+
+#### If everything is successful, you will have a working computer vision model that can classify between masked and unmasked persons:
+
+![Imgur](https://i.imgur.com/8ZKzp5z.jpg)

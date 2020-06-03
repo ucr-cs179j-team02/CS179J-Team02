@@ -1,4 +1,11 @@
+import requests
+
+# State vars
+Distance = "UNDEFINED"
+Direction = "UNDEFINED"
+
 import numpy as np
+import time
 import os
 import six.moves.urllib as urllib
 import sys
@@ -70,6 +77,61 @@ def run_inference_for_single_image(image, graph):
     output_dict['detection_classes'] = output_dict[
         'detection_classes'][0].astype(np.uint8)
     output_dict['detection_boxes'] = output_dict['detection_boxes'][0]
+    
+    vertTop = output_dict['detection_boxes'][0][0]
+    horiLef = output_dict['detection_boxes'][0][1]
+    vertBot = output_dict['detection_boxes'][0][2]
+    horiRig = output_dict['detection_boxes'][0][3]
+	
+    #print("Top (min 0.0): " + str(vertTop))
+    #print("Bot (max 1): " + str(vertBot))
+    #print("Left Bar: " + str(horiLef))
+    #print("Right Bar: " + str(horiRig))
+	
+    global Distance
+    global Direction
+    
+	# Direction checks
+    if(float(horiLef) > 0.60):
+        if(Direction != "LEFT"):
+            Direction = "LEFT"
+            print("LEFT SIDE DETECTION")
+            #r = requests.request(method='GET', url="http://108.197.149.150:8080/off")
+    elif(float(horiRig) < 0.40):
+        if(Direction != "RIGHT"):
+            Direction = "RIGHT"
+            print("RIGHT SIDE DETECTION")
+            #r = requests.request(method='GET', url="http://108.197.149.150:8080/hat")
+    
+    # Class checks
+    #if(int(output_dict['detection_classes'][0]) == 1):
+        #print("masked")
+    #if(int(output_dict['detection_classes'][0]) == 2):
+        #print("unmasked")
+    
+    # Distance checks
+    if(float(horiRig) - float(horiLef) > 0.37):
+        if(Distance != "CLOSEST"):
+            Distance = "CLOSEST"
+            print(Distance + ": " + str(float(horiRig) - float(horiLef)))
+            r = requests.request(method='GET', url="http://70.181.237.196:8080/belt3")
+    elif(float(horiRig) - float(horiLef) > 0.24):
+        if(Distance != "CLOSER"):
+            Distance = "CLOSER"
+            print(Distance + ": " + str(float(horiRig) - float(horiLef)))
+            r = requests.request(method='GET', url="http://70.181.237.196:8080/belt2")
+    elif(float(horiRig) - float(horiLef) > 0.15):
+        if(Distance != "CLOSE"):
+            Distance = "CLOSE"
+            print(Distance + ": " + str(float(horiRig) - float(horiLef)))
+            r = requests.request(method='GET', url="http://70.181.237.196:8080/belt1")
+    elif(Distance != "FAR"):
+        Distance = "FAR"
+        print(Distance + ": " + str(float(horiRig) - float(horiLef)))
+        r = requests.request(method='GET', url="http://70.181.237.196:8080/off")
+	
+    #print(Distance + ": " + str(float(horiRig) - float(horiLef)))
+    
     output_dict['detection_scores'] = output_dict['detection_scores'][0]
     if 'detection_masks' in output_dict:
         output_dict['detection_masks'] = output_dict['detection_masks'][0]
