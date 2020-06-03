@@ -19,7 +19,6 @@ void setup() {
    pinMode(buzzer, OUTPUT);
 }
 
-// need a signal first from server still. This program is in preparation for that.
 
 void loop() {
   /*
@@ -39,6 +38,7 @@ void loop() {
                 break;
       case '4': signal = 4;
                 break;
+      default:  break;
     }
   }
   /*
