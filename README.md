@@ -26,7 +26,8 @@ WS2812B LEDs
 
 # Arduino IDE Setup
 Visit this website and follow the instructions to download Arduino for yourself.
-	https://www.arduino.cc/en/guide/windows
+
+    https://www.arduino.cc/en/guide/windows
 
 
 To learn more about any individual system please go to their corresponding folders.
