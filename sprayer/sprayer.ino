@@ -2,10 +2,10 @@
    
 Servo rotateServo; // servo object to aim the spray
 Servo shootServo; // servo object to shoot the spray
-int val; // variable for rotating large servo (angle)
+int val = 0; // variable for rotating large servo (angle set to center)
 const int buttonPin = 12; // where button to be pressed and switch modes is located
 int buttonState = 0;
-//int potPort = 0; // port connecting to potentiometeter
+//int potPort = 0; // port= connecting to potentiometeter
 int pos = 0; // variable for moving small servo (shoot)
 
 // Initializing buzzer locations
@@ -46,7 +46,7 @@ void loop() {
    * import serial
    * ser = serial.Serial('COM3', 9600)
    * while 1:
-   *    val = input("Input Danger Level(1-4):");
+   *    val = input("Input Danger Level(1-4):")
    *    ser.write(val.encode())
    */
  
@@ -61,6 +61,7 @@ void loop() {
    * No reaction.
    */
   if (signal == 1){
+    //shootServo.write(0);
     noTone(buzzer);
   }
   /*
@@ -81,20 +82,16 @@ void loop() {
    * Spray will rotate to face unmasked target.
    */
   if (signal == 3){
+    // val = analogRead(potPort); // read potentiometer value (0 to 1023)
+    // val = map(val, 0, 1023, 0, 90); // Re-map val to servo (0 to 90) based off data
+    // + is left / - is right
+    val = random(-60, 60);
+    shootServo.write(val); // set servo position based off val
     tone(buzzer, 700);
     delay(600);
     tone(buzzer, 500);
     delay(600);
-    /* val is set for now, 
-     * but will really need to receive an actual value from server
-     * to set the proper direction.
-     * val = analogRead(potPort); // read potentiometer value (0 to 1023)
-     * val = map(val, 0, 1023, 0, 90); // Re-map val to servo (0 to 90) based off data
-     */
-    val = 0; // center
-//    val = 30; // to the left a bit
-//    val = -30; // to the right a bit
-    shootServo.write(val); // set servo position based off val
+    
   }
   /*
    * Danger Level: 4
