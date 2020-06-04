@@ -1,8 +1,11 @@
-import requests
+from requests import Session
+
+import time
 
 # State vars
 Distance = "UNDEFINED"
 Direction = "UNDEFINED"
+Firing = "UNDEFINED"
 
 import numpy as np
 import time
@@ -90,18 +93,27 @@ def run_inference_for_single_image(image, graph):
 	
     global Distance
     global Direction
+    global Firing
     
 	# Direction checks
     if(float(horiLef) > 0.60):
         if(Direction != "LEFT"):
             Direction = "LEFT"
             print("LEFT SIDE DETECTION")
-            #r = requests.request(method='GET', url="http://108.197.149.150:8080/off")
+            s = Session()
+            s.get("http://76.216.216.19:8070/left")
+            
     elif(float(horiRig) < 0.40):
         if(Direction != "RIGHT"):
             Direction = "RIGHT"
             print("RIGHT SIDE DETECTION")
-            #r = requests.request(method='GET', url="http://108.197.149.150:8080/hat")
+            s = Session()
+            s.get("http://76.216.216.19:8070/right")
+    else:
+        if(Direction != "CENTER"):
+            s = Session()
+            s.get("http://76.216.216.19:8070/center")
+            Direction = "CENTER"
     
     # Class checks
     #if(int(output_dict['detection_classes'][0]) == 1):
@@ -110,27 +122,35 @@ def run_inference_for_single_image(image, graph):
         #print("unmasked")
     
     # Distance checks
-    if(float(horiRig) - float(horiLef) > 0.37):
-        if(Distance != "CLOSEST"):
-            Distance = "CLOSEST"
-            print(Distance + ": " + str(float(horiRig) - float(horiLef)))
-            r = requests.request(method='GET', url="http://70.181.237.196:8080/belt3")
-    elif(float(horiRig) - float(horiLef) > 0.24):
+    if(float(horiRig) - float(horiLef) > 0.25):
         if(Distance != "CLOSER"):
             Distance = "CLOSER"
             print(Distance + ": " + str(float(horiRig) - float(horiLef)))
-            r = requests.request(method='GET', url="http://70.181.237.196:8080/belt2")
-    elif(float(horiRig) - float(horiLef) > 0.15):
+            s = Session()
+            s.get("http://70.181.237.196:8080/close")
+            s.get("http://108.197.149.150/close")
+            if(Firing != "FIRING"):
+              s.get("http://76.216.216.19:8070/shoot")
+              Firing = "FIRING"
+    elif(float(horiRig) - float(horiLef) > 0.16):
         if(Distance != "CLOSE"):
             Distance = "CLOSE"
             print(Distance + ": " + str(float(horiRig) - float(horiLef)))
-            r = requests.request(method='GET', url="http://70.181.237.196:8080/belt1")
+            s = Session()
+            s.get("http://70.181.237.196:8080/closer")
+            s.get("http://108.197.149.150/closer")
+            if(Firing == "FIRING"):
+              s.get("http://76.216.216.19:8070/")
+              Firing = "STOPPING"
     elif(Distance != "FAR"):
         Distance = "FAR"
         print(Distance + ": " + str(float(horiRig) - float(horiLef)))
-        r = requests.request(method='GET', url="http://70.181.237.196:8080/off")
-	
-    #print(Distance + ": " + str(float(horiRig) - float(horiLef)))
+        s = Session()
+        s.get("http://70.181.237.196:8080/far")
+        s.get("http://108.197.149.150/far")
+        if(Firing == "FIRING"):
+              s.get("http://76.216.216.19:8070/")
+              Firing = "STOPPING"
     
     output_dict['detection_scores'] = output_dict['detection_scores'][0]
     if 'detection_masks' in output_dict:
